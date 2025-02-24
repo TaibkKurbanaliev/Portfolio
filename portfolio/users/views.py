@@ -3,7 +3,7 @@ from django.contrib import auth
 from django.urls import reverse
 
 from users.models import User
-from users.forms import UserLoginForm, UserRegistartionForm
+from users.forms import UserLoginForm, UserRegistartionForm, UserProfileForm
 
 # Create your views here.
 def sign_in(request):
@@ -32,3 +32,15 @@ def sign_up(request):
         form = UserRegistartionForm()
     context = {'form': form}
     return render(request, 'users/sign-up.html',context)
+
+def profile_change(request):
+    if request.method == 'POST':
+        form = UserProfileForm(instance=request.user, data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('users:profile_change'))
+        else:
+            print(form.errors)
+    form = UserProfileForm(instance=request.user)
+    context = { 'form': form }
+    return render(request, 'users/profile_change.html', context)

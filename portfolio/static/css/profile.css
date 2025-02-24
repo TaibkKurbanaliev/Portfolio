@@ -1,0 +1,61 @@
+body{
+    background: #1C0B26;
+    margin-top:20px;
+}
+h6,p,h5,h4,h3,h2,h1, span {
+    color: #62053E;
+}
+
+input {
+    background-color: #1C0B26;
+    color: #08B174;
+}
+.btn-primary {
+    --bs-btn-bg: #1C0B26;
+    --bs-btn-color: #08B174;
+}
+.btn-outline-primary {
+    --bs-btn-bg:  #08B174;
+    --bs-btn-color: #1C0B26;
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #12C4AD;
+    background-clip: border-box;
+    border: 0 solid transparent;
+    border-radius: .25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+}
+.me-2 {
+    margin-right: .5rem!important;
+}
+.list-group-item {
+    background-color: #12C4AD;
+}
+
+.avatar {
+    width: 110px;
+    height: 110px;
+    background-color: #1C0B26; /* Серый фон */
+    border-radius: 50%; /* Делаем круг */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень */
+    border: 2px solid #ffffff; /* Белая рамка */
+    font-family: Arial, sans-serif;
+    color: #757575; /* Цвет текста */
+    font-size: 14px;
+    text-align: center;
+}
+
+.avatar::before {
+    content: "🖼️"; /* Эмодзи или символ */
+    font-size: 50px;
+    color: white;
+}

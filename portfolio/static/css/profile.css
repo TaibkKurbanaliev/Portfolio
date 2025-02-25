@@ -2,7 +2,7 @@ body{
     background: #1C0B26;
     margin-top:20px;
 }
-h6,p,h5,h4,h3,h2,h1, span {
+h6,p,h5,h4,h3,h2,h1,span {
     color: #62053E;
 }
 
@@ -38,24 +38,46 @@ input {
     background-color: #12C4AD;
 }
 
+.readonly-field {
+    background-color: #d8d7d7; /* Серый фон */
+    color: #6c757d; /* Серый текст */
+    cursor: not-allowed; /* Изменение курсора при наведении */
+    border: 1px solid #ccc; /* Светлая граница */
+    user-select: none; /* Запрет выделения текста */
+    pointer-events: none; /* Отключение взаимодействия с полем */
+}
+
 .avatar {
     width: 110px;
     height: 110px;
-    background-color: #1C0B26; /* Серый фон */
-    border-radius: 50%; /* Делаем круг */
+    background-color: #1C0B26; 
+    border-radius: 50%; 
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень */
-    border: 2px solid #ffffff; /* Белая рамка */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    border: 2px solid #ffffff; 
     font-family: Arial, sans-serif;
-    color: #757575; /* Цвет текста */
+    color: #757575; 
     font-size: 14px;
     text-align: center;
+    background-size: cover; /* Добавляем это для растяжения изображения */
+    background-position: center; /* Центрируем изображение */
+    background-repeat: no-repeat; /* Запрещаем повторение изображения */
+    transition: background-image 0.3s ease; /* Добавляем плавный переход */
 }
 
 .avatar::before {
-    content: "🖼️"; /* Эмодзи или символ */
+    content: "🖼️"; 
     font-size: 50px;
     color: white;
+}
+
+/* Стили для случая, когда есть изображение */
+.avatar.has-image {
+    background-color: transparent; /* Убираем фоновый цвет */
+}
+
+.avatar.has-image::before {
+    display: none; /* Скрываем иконку, когда есть изображение */
 }

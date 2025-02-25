@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect, render, HttpResponseRedirect
 from django.contrib import auth
 from django.urls import reverse
 
@@ -38,9 +38,26 @@ def profile_change(request):
         form = UserProfileForm(instance=request.user, data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('users:profile_change'))
+            return HttpResponseRedirect(reverse('users:profile'))
         else:
             print(form.errors)
     form = UserProfileForm(instance=request.user)
+    print(request.user.image)
     context = { 'form': form }
     return render(request, 'users/profile_change.html', context)
+
+def profile(request):
+    username = request.GET.get('username')
+    if username:
+        user = get_object_or_404(User, username=username)
+    else:
+        if request.user.is_authenticated:
+            user = request.user
+        else:
+            return redirect('')
+    context = {
+        'user_profile': user,
+        'is_owner': request.user.is_authenticated and request.user == user,  # Проверка, является ли текущий пользователь владельцем профиля
+    }
+    
+    return render(request, 'users/profile.html', context)

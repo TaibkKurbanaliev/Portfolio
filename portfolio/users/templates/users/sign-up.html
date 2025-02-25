@@ -9,8 +9,14 @@
 {% block content %}
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
     <main class="form-signin w-50 m-auto">
+      
       <form action="{% url 'users:sign-up' %}" method="post">
-        
+        {% if form.errors %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert"
+             style="margin-top: 50px;">
+            {{ form.errors }}
+        </div>
+        {% endif %}
         <img class="mb-4" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
         {% csrf_token %}

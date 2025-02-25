@@ -19,10 +19,9 @@
                             {% if form.instance.image %}
                                 <img id="avatarPreview" src="{{ form.instance.image.url }}" alt="avatar" class="rounded-circle p-1 bg-primary" width="110">
                             {% else %}
-                                <div id="defaultAvatar" class="avatar">  </div> 
+                                <div id="defaultAvatar" class="avatar"> </div> 
                             {% endif %}
                                 
-                            
                             <div class="mt-3">
                                 <h4>{{ form.instance.first_name }} {{ form.instance.second_name }}</h4>
                                 <p class="text-secondary mb-1">Full Stack Developer</p>

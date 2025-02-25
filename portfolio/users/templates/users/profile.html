@@ -14,7 +14,6 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            
                             {% if user_profile.image %}
                                 <img id="avatarPreview" src="{{ user_profile.image.url }}" alt="avatar" class="rounded-circle p-1 bg-primary" width="110">
                             {% else %}
@@ -72,14 +71,6 @@
                             </div>
                             <div class="col-sm-9 text-secondary">
                                 <span>{{ user_profile.email }}</span>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Username</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                <span>{{ user_profile.username }}</span>
                             </div>
                         </div>
 

@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render, HttpResponseRedirect
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.urls import reverse
 
 from users.models import User
@@ -27,6 +27,7 @@ def sign_up(request):
         print(form.errors)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Вы успешно зарегистрировались!')
             return HttpResponseRedirect(reverse('users:sign-in'))
     else:
         form = UserRegistartionForm()
@@ -57,7 +58,10 @@ def profile(request):
             return redirect('')
     context = {
         'user_profile': user,
-        'is_owner': request.user.is_authenticated and request.user == user,  # Проверка, является ли текущий пользователь владельцем профиля
+        'is_owner': request.user.is_authenticated and request.user == user,  
     }
     
     return render(request, 'users/profile.html', context)
+
+def logout(request):
+    pass

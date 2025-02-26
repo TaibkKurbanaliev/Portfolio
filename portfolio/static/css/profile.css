@@ -39,12 +39,12 @@ input {
 }
 
 .readonly-field {
-    background-color: #d8d7d7; /* Серый фон */
-    color: #6c757d; /* Серый текст */
-    cursor: not-allowed; /* Изменение курсора при наведении */
-    border: 1px solid #ccc; /* Светлая граница */
-    user-select: none; /* Запрет выделения текста */
-    pointer-events: none; /* Отключение взаимодействия с полем */
+    background-color: #d8d7d7;
+    color: #6c757d;
+    cursor: not-allowed;
+    border: 1px solid #ccc; 
+    user-select: none; 
+    pointer-events: none;
 }
 
 .avatar {
@@ -61,10 +61,10 @@ input {
     color: #757575; 
     font-size: 14px;
     text-align: center;
-    background-size: cover; /* Добавляем это для растяжения изображения */
-    background-position: center; /* Центрируем изображение */
-    background-repeat: no-repeat; /* Запрещаем повторение изображения */
-    transition: background-image 0.3s ease; /* Добавляем плавный переход */
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    transition: background-image 0.3s ease;
 }
 
 .avatar::before {
@@ -73,11 +73,16 @@ input {
     color: white;
 }
 
-/* Стили для случая, когда есть изображение */
 .avatar.has-image {
-    background-color: transparent; /* Убираем фоновый цвет */
+    background-color: transparent;
 }
 
 .avatar.has-image::before {
-    display: none; /* Скрываем иконку, когда есть изображение */
+    display: none; 
+}
+
+.outer-text {
+    color: #08B174;
+    font-family: 'Arial', sans-serif; 
+    letter-spacing: 2px; 
 }

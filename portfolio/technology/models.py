@@ -1,8 +1,10 @@
 from django.db import models
+from users.models import User
 
 class Technology(models.Model): 
     name = models.CharField(max_length=32, unique=True)
     description = models.TextField(null=True, blank=True)
+    owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.name
@@ -11,7 +13,7 @@ class Project(models.Model):
     name = models.CharField(max_length=128)
     link = models.CharField(max_length=512)
     description = models.TextField()
-    technology_owner = models.ForeignKey(to=Technology, on_delete=models.PROTECT)
+    technology_owner = models.ForeignKey(to=Technology, on_delete=models.CASCADE)
     
     def __str__(self):
         return f'{self.name} | {self.technology_owner.name}'

@@ -4,6 +4,7 @@ from django.urls import reverse
 
 from users.models import User
 from users.forms import UserLoginForm, UserRegistartionForm, UserProfileForm
+from technology.models import Project, ProjectImages, Technology
 
 # Create your views here.
 def sign_in(request):
@@ -49,6 +50,7 @@ def profile_change(request):
 
 def profile(request):
     username = request.GET.get('username')
+    
     if username:
         user = get_object_or_404(User, username=username)
     else:
@@ -56,9 +58,24 @@ def profile(request):
             user = request.user
         else:
             return redirect('')
+        
+    techonologies = Technology.objects.filter(owner=user.pk)
+    
+    projects = list()
+    for technology in techonologies:
+        projects.append(Project.objects.filter(technology_owner=technology.pk))
+        
+    projects_images = list()
+    for project in projects:
+        for item in project:
+            projects_images.append(ProjectImages.objects.filter(project=item.pk))
+        
     context = {
         'user_profile': user,
-        'is_owner': request.user.is_authenticated and request.user == user,  
+        'technologies': techonologies,
+        'projects': projects,
+        'projects_images': projects_images,
+        'is_owner': request.user.is_authenticated and request.user == user,
     }
     
     return render(request, 'users/profile.html', context)

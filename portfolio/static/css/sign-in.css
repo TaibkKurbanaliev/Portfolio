@@ -23,3 +23,19 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+h6,p,h5,h4,h3,h2,h1,span, label {
+  color: #62053E;
+}
+.bt-color {
+  background-color: #08B174;
+}
+
+.input-color {
+  color: #62053E;
+  background-color: #08B174;
+}
+
+.bg-color {
+  background-color: #1C0B26;
+}

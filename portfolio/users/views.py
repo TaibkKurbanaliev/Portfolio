@@ -59,26 +59,30 @@ def profile(request):
         else:
             return redirect('')
         
-    techonologies = Technology.objects.filter(owner=user.pk)
-    
-    projects = list()
-    for technology in techonologies:
-        projects.append(Project.objects.filter(technology_owner=technology.pk))
-        
-    projects_images = list()
-    for project in projects:
-        for item in project:
-            projects_images.append(ProjectImages.objects.filter(project=item.pk))
-        
+    technologies = Technology.objects.filter(owner=user.pk)
+
+    full_projects = []
+    for technology in technologies:
+        projects = Project.objects.filter(technology_owner=technology.pk)
+        images = [ProjectImages.objects.filter(project=project.pk) for project in projects]
+        full_projects.append(zip(projects, images)) 
+
+    result = zip(technologies, full_projects)
+    print(full_projects)
     context = {
         'user_profile': user,
-        'technologies': techonologies,
-        'projects': projects,
-        'projects_images': projects_images,
+        'technologies': technologies,
+        'full_projects': result,
         'is_owner': request.user.is_authenticated and request.user == user,
     }
-    
+
     return render(request, 'users/profile.html', context)
 
 def logout(request):
-    pass
+    auth.logout(request)
+    return HttpResponseRedirect(reverse('index'))
+
+def index(request):
+    if(request.user.is_authenticated):
+        return HttpResponseRedirect(reverse('users:profile'))
+    return render(request,'users/index.html')

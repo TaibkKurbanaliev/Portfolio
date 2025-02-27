@@ -2,12 +2,13 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from users.views import sign_in, sign_up, profile_change, profile, logout
+from users.views import sign_in, sign_up, profile_change, profile, logout, index
 
 
 app_name = 'users'
 
 urlpatterns = [
+    path('', index, name='index'),
     path('sign-in', sign_in, name='sign-in'),
     path('sign-up', sign_up, name='sign-up'),
     path('profile_change', profile_change, name='profile_change'),

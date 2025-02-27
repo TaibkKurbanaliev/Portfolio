@@ -18,6 +18,8 @@ input {
     --bs-btn-bg:  #08B174;
     --bs-btn-color: #1C0B26;
 }
+
+
 .card {
     position: relative;
     display: flex;
@@ -85,4 +87,13 @@ input {
     color: #08B174;
     font-family: 'Arial', sans-serif; 
     letter-spacing: 2px; 
+}
+
+.bg-color {
+    background: #1C0B26;
+}
+
+.main-button {
+    color: #62053E;
+    background-color: #08B174;
 }

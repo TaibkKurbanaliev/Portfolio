@@ -1,0 +1,24 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block title %}
+  Main
+{% endblock %}
+
+{% block custom_css %}
+  <link href="{% static '/css/profile.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="main-body">
+    <div class="row">
+      <h1>Cover your page.</h1>
+      <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+      <p class="lead">
+          <a href="#" class="btn main-button btn-lg fw-bold">Войти</a>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock  %}

@@ -1,4 +1,4 @@
-{% extends 'users/base.html' %}
+{% extends 'users/auth_base.html' %}
 {% load static %}
 
 {% block title %}Sign-in{% endblock  %}
@@ -7,7 +7,7 @@
 {% endblock  %}
 
 {% block content %}
-<body class="d-flex align-items-center py-4 bg-body-tertiary">
+<body class="bg-color d-flex align-items-center py-4">
     <main class="form-signin w-50 m-auto">
       {% if messages or form.non_field_errors %}
           <div class="alert
@@ -25,8 +25,7 @@
       {% endif %}
       <form action="{% url 'users:sign-in' %}" method="post">
         
-        <img class="mb-4" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <h1 class="mb-3 fw-normal">Please sign in</h1>
         {% csrf_token %}
         <div class="form-floating">
           {{ form.username }}
@@ -43,8 +42,8 @@
             Remember me
           </label>
         </div>
-        <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-body-secondary">© 2017–2024</p>
+        <button class="btn bt-color w-100 py-2" type="submit">Sign in</button>
+        <p class="mt-5 mb-3">© 2017–2024</p>
       </form>
     </main>
   </body>

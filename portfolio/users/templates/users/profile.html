@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-  Profile change
+  Profile
 {% endblock %}
 
 {% block custom_css %}
@@ -114,34 +114,53 @@
             </div>
           </div>
 
-          {% for technology in technologies %}
+          {% for technology, full_project in full_projects %}
             <div class="row">
               <div class="col-12 text-center">
-                <h1 class="outer-text display-4 text-center mb-4">{{ technology }}</h1>
+                <h1 class="outer-text display-4 text-center mb-4">{{ technology.name }}</h1>
               </div>
             </div>
-
-            {% for project in projects %}
-              {% if forloop.parentloop.counter0 == forloop.counter0 %}
-              
-              {% for item in project %}
+            {% for project, project_images in full_project %}
               <div class="row">
                 <div class="col-sm-12">
                   <div class="card">
                     <div class="card-body">
-                      <h4>{{ item.name }}</h4>
-                      <a href="{{ item.link }}"><p>{{ item.link }}</p></a>
-                      <p>{{ item.description }}</p>
+                      <h4>{{ project.name }}</h4>
+                      <a href="{{ project.link }}"><p>{{ project.link }}</p></a>
+                      <p>{{ project.description }}</p>
+                      {% if project_images %}
+                      <div id="carousel-{{ forloop.counter }}" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                          {% for image in project_images %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                              <img src="{{ image.image.url }}" class="d-block w-100 rounded" alt="{{ project.name }}">
+                            </div>
+                          {% endfor %}
+                        </div>
+                        <a class="carousel-control-prev" href="#carousel-{{ forloop.counter }}" role="button" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel-{{ forloop.counter }}" role="button" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </a>
+                      </div>
+                    {% else %}
+                      <div class="text-center">
+                        <img src="path/to/placeholder-image.png" alt="Изображения отсутствуют" class="img-fluid rounded">
+                        <p>Изображения отсутствуют</p>
+                      </div>
+                    {% endif %}
                     </div>
                   </div>
                 </div>
               </div>
-              {% endfor %}        
-              {% endif %}
             {% endfor %}
           {% endfor %}
         </div>
       </div>
     </div>
   </div>
+  <script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
 {% endblock %}
+
+

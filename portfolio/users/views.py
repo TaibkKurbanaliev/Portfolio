@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render, HttpResponseRedirect
 from django.contrib import auth, messages
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
 from users.models import User
@@ -35,6 +36,7 @@ def sign_up(request):
     context = {'form': form}
     return render(request, 'users/sign-up.html',context)
 
+@login_required
 def profile_change(request):
     if request.method == 'POST':
         form = UserProfileForm(instance=request.user, data=request.POST, files=request.FILES)
@@ -43,9 +45,24 @@ def profile_change(request):
             return HttpResponseRedirect(reverse('users:profile'))
         else:
             print(form.errors)
+    
+    technologies = Technology.objects.filter(owner=request.user.pk)
+
+    full_projects = []
+    for technology in technologies:
+        projects = Project.objects.filter(technology_owner=technology.pk)
+        images = [ProjectImages.objects.filter(project=project.pk) for project in projects]
+        full_projects.append(zip(projects, images)) 
+
+    result = zip(technologies, full_projects)
+    
     form = UserProfileForm(instance=request.user)
     print(request.user.image)
-    context = { 'form': form }
+    context = { 
+               'form': form,
+               'technologies': technologies,
+                'full_projects': result, 
+    }
     return render(request, 'users/profile_change.html', context)
 
 def profile(request):
@@ -68,7 +85,6 @@ def profile(request):
         full_projects.append(zip(projects, images)) 
 
     result = zip(technologies, full_projects)
-    print(full_projects)
     context = {
         'user_profile': user,
         'technologies': technologies,

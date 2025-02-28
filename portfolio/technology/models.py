@@ -2,7 +2,7 @@ from django.db import models
 from users.models import User
 
 class Technology(models.Model): 
-    name = models.CharField(max_length=32, unique=True)
+    name = models.CharField(max_length=32)
     description = models.TextField(null=True, blank=True)
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
     

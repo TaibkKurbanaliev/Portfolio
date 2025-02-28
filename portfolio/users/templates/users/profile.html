@@ -123,8 +123,7 @@
               {% endif %}
             </div>
           </div>
-        </div>
-        {% for technology, full_project in full_projects %}
+          {% for technology, full_project in full_projects %}
             <div class="row">
               <div class="col-12 text-center">
                 <h1 class="outer-text display-4 text-center mb-4">{{ technology.name }}</h1>
@@ -166,6 +165,7 @@
               </div>
             {% endfor %}
           {% endfor %}
+        </div>
       </div>
     </div>
   </div>
